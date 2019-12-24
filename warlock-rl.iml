@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module cursive.leiningen.project.LeiningenProjectsManager.displayName="warlock-rl:0.1.0-SNAPSHOT" cursive.leiningen.project.LeiningenProjectsManager.isLeinModule="true" type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/classes" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/resources" isTestSource="false" />
+      <sourceFolder url="file://C:\ClojureProjects\warlock-rl\dev-resources" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-classic:1.2.3" level="project" />
+    <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Leiningen: clojure-complete:0.2.5" level="project" />
+    <orderEntry type="library" name="Leiningen: com.github.ben-manes.caffeine/caffeine:2.5.4" level="project" />
+    <orderEntry type="library" name="Leiningen: com.jhlabs/filters:2.0.235-1" level="project" />
+    <orderEntry type="library" name="Leiningen: nrepl:0.6.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/clojure:1.10.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/core.async:0.6.532" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/core.cache:0.8.2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/core.memoize:0.8.2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/core.specs.alpha:0.2.44" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/data.priority-map:0.0.7" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.2.176" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer.jvm:0.7.3" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer:0.7.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/tools.reader:1.3.2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.databinding-jvm:2019.1.0-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.datatypes-jvm:2019.1.0-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.events-jvm:2019.1.0-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.logging-jvm:2019.1.0-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.core-jvm:2019.1.2-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.jvm.swing:2019.1.2-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-reflect:1.3.40" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-stdlib-common:1.3.40" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-stdlib-jdk7:1.3.40" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-stdlib-jdk8:1.3.40" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-stdlib:1.3.40" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains.kotlinx/kotlinx-coroutines-core:1.2.1" level="project" />
+    <orderEntry type="library" name="Leiningen: org.jetbrains/annotations:13.0" level="project" />
+    <orderEntry type="library" name="Leiningen: org.ow2.asm/asm:5.2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Leiningen: org.yaml/snakeyaml:1.18" level="project" />
+  </component>
+</module>

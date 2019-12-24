@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: com.github.ben-manes.caffeine/caffeine:2.5.4">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/com/github/ben-manes/caffeine/caffeine/2.5.4/caffeine-2.5.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
