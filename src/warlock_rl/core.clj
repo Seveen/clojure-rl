@@ -14,7 +14,7 @@
       ]
   (.dock app v/start-view))
 
-(def initial-world [{:position [40 10] :tile {:fg-color "#000000" :bg-color "#ffff00" :char \X}}
+(def initial-world [{:position [40 10] :tile {:fg-color "#000000" :bg-color "#ffff00" :char \r}}
                     {:position [42 10] :tile {:fg-color "#000000" :bg-color "#ffffff" :char \s}}
                     {:position [43 10] :tile {:fg-color "#000000" :bg-color "#ffffff" :char \R}}])
 
@@ -24,10 +24,10 @@
   ui)
 
 (defn process-world [world]
-  (v/paint-world world)
+  (v/change-world world)
   world)
 
-(v/paint-world initial-world)
+(v/change-world initial-world)
 (process-world initial-world)
 
 ;(go-loop [w initial-world ui ui]

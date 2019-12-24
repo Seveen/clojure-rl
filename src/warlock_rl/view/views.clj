@@ -16,7 +16,7 @@
 
 (def start-view (z/make-view game-area))
 
-(def paint-world
+(def change-world
   (partial z/paint-world game-area))
 
 (def world
