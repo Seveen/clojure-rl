@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Leiningen: org.hexworks.cobalt/cobalt.logging-jvm:2019.2.3-PREVIEW">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.m2/repository/org/hexworks/cobalt/cobalt.logging-jvm/2019.2.3-PREVIEW/cobalt.logging-jvm-2019.2.3-PREVIEW.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

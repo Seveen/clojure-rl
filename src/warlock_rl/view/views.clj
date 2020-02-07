@@ -1,27 +1,36 @@
 (ns warlock-rl.view.views
-  (:require [warlock-rl.view.zircon :as z]
-            [clojure.walk :refer :all])
-  (:import (org.hexworks.zircon.api Components ComponentDecorations Positions Tiles)
-           (org.hexworks.zircon.api.component.renderer ComponentDecorationRenderer)
-           (org.hexworks.zircon.api.component ComponentAlignment)
-           (org.hexworks.zircon.api.graphics BoxType)))
+  (:require [zircon.game-area :as z]
+            [zircon.component :as c]
+            [zircon.colors    :as l]
+            [warlock-rl.system :as s])
+  (:import (org.hexworks.zircon.api.uievent KeyCode UIEventResponse)))
 
-(z/defcomponent
-  game-area
-  :panel
-  {:size        [80 50]
-   :position    [0 0]
-   :decorations {:box {}}
-   :renderer    [:no-op]})
-
-(def start-view (z/make-view game-area))
-
-(def change-world
-  (partial z/paint-world game-area))
-
-(def world
-  [{:position [40 10] :tile {:fg-color "#000000" :bg-color "#ffff00" :char \t}}
-   {:position [42 10] :tile {:fg-color "#000000" :bg-color "#ffffff" :char \O}}
-   {:position [43 10] :tile {:fg-color "#000000" :bg-color "#ffffff" :char \n}}])
-
-(z/paint-world game-area world)
+(def start-view
+ (let [game-area (c/->component
+                   {:type      :game-component
+                    :size      [60 40]
+                    :position  [0 0]
+                    :game-area (z/area)})
+       log (c/->component
+             {:type        :panel
+              :size        [60 10]
+              :position    [0 40]
+              :decorations {:box {:title "Log"}}})
+       stats (c/->component
+               {:type        :panel
+                :size        [20 50]
+                :position    [60 0]
+                :decorations {:box {:title "Stats"}}})
+       handler (fn [event _] (z/paint-world
+                               (s/update-world
+                                 (condp = (.getCode event)
+                                   KeyCode/KEY_T :right
+                                   KeyCode/KEY_R :left
+                                   KeyCode/KEY_F :up
+                                   KeyCode/KEY_S :down
+                                   KeyCode/KEY_C :use-skill
+                                   :none)))
+                 (UIEventResponse/processed))]
+ {:root    [game-area log stats]
+  :handler handler
+  :theme   (l/color-themes :tron)}))
