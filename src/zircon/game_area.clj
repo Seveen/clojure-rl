@@ -52,5 +52,3 @@
                  (-> (Block/newBuilder)
                      (.withEmptyTile tile)
                      (.build)))))
-
-()
