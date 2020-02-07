@@ -21,16 +21,16 @@
                 :size        [20 50]
                 :position    [60 0]
                 :decorations {:box {:title "Stats"}}})
-       handler (fn [event _] (z/paint-world
-                               (s/update-world
-                                 (condp = (.getCode event)
-                                   KeyCode/KEY_T :right
-                                   KeyCode/KEY_R :left
-                                   KeyCode/KEY_F :up
-                                   KeyCode/KEY_S :down
-                                   KeyCode/KEY_C :use-skill
-                                   :none)))
-                 (UIEventResponse/processed))]
+       handler (fn [event _]
+                 (z/paint-world
+                   (s/update-world
+                     (condp = (.getCode event)
+                       KeyCode/KEY_T :right
+                       KeyCode/KEY_R :left
+                       KeyCode/KEY_F :up
+                       KeyCode/KEY_S :down
+                       KeyCode/KEY_C :use-skill
+                       :none))))]
  {:root    [game-area log stats]
   :handler handler
   :theme   (l/color-themes :tron)}))

@@ -16,9 +16,8 @@
       (onDock []
         (doall (map #(.addComponent (.getScreen this) %)
                     (config :root)))
-        (.handleKeyboardEvents
+        (.processKeyboardEvents
           (.getScreen this)
           KeyboardEventType/KEY_PRESSED
           (Functions/fromBiConsumer (handler (or (config :handler)
                                                  #())))))))
-
