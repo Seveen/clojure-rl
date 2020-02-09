@@ -17,7 +17,6 @@
         (doall (map #(.addComponent (.getScreen this) %)
                     (config :root)))
         (.processKeyboardEvents
-          (.getScreen this)
+          (.getTileGrid app)
           KeyboardEventType/KEY_PRESSED
-          (Functions/fromBiConsumer (handler (or (config :handler)
-                                                 #())))))))
+          (Functions/fromBiConsumer (handler (config :handler)))))))
