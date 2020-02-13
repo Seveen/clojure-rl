@@ -3,7 +3,8 @@
             [warlock-rl.system :refer [MAP DRAWABLE ENTITIES VIEWPORT]]
             [com.rpl.specter :refer [select select-first ALL]])
   (:import (org.hexworks.zircon.api.data Size3D Block Position3D)
-           (org.hexworks.zircon.api GameComponents)))
+           (org.hexworks.zircon.api GameComponents)
+           (org.hexworks.zircon.api.game.base BaseGameArea)))
 
 (def empty-tilemap
   (apply merge (for [i (range 60)]
@@ -52,3 +53,6 @@
                  (-> (Block/newBuilder)
                      (.withEmptyTile tile)
                      (.build)))))
+(comment
+  (defn make-area [config]
+    (proxy [BaseGameArea] [])))

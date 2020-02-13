@@ -12,4 +12,4 @@
                  [danlentz/clj-uuid "0.1.9"]]
   :repositories [["jitpack" "https://jitpack.io"]
                  ["jcenter" "https://jcenter.bintray.com/"]]
-  :repl-options {:init-ns zircon-examples.sliders})
+  :repl-options {:init-ns warlock-rl.core})

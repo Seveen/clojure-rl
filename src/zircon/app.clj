@@ -7,40 +7,35 @@
 
 (def cursor-styles
   {:character-foreground `CursorStyle/USE_CHARACTER_FOREGROUND
-   :fixed-background `CursorStyle/FIXED_BACKGROUND
-   :under-bar `CursorStyle/UNDER_BAR
-   :vertical-bar `CursorStyle/VERTICAL_BAR})
+   :fixed-background     `CursorStyle/FIXED_BACKGROUND
+   :under-bar            `CursorStyle/UNDER_BAR
+   :vertical-bar         `CursorStyle/VERTICAL_BAR})
 
-(defn- app-config [config]
-  (let [[width height] (or (:size config) [80 24])]
-    (as-> (.newBuilder AppConfigBuilder/Companion) b
-          (.withTitle b (or
-                          (:title config)
-                          "Zircon Application"))
-          (.withSize b width height)
-          (.withCursorBlinking b (or
-                                   (:cursor-blink config)
-                                   false))
-          (.withBlinkLengthInMilliSeconds b (or
-                                              (:blink-length config)
-                                              500))
-          (if (:fullscreen config)
-            (.fullScreen b)
-            b)
-          (.withDebugMode b (or
-                              (:debug-mode config)
-                              false))
-          (.withClipboardAvailable b (or
-                                       (:clipboard config)
-                                       false))
-          (.withCursorStyle b (or (cursor-styles (:cursor-style config))
-                                  (CursorStyle/FIXED_BACKGROUND)))
-          (.withCursorColor b (TileColor/fromString (or (:cursor-color config)
-                                                        "#FFFFFF")))
-          (.withDefaultTileset b (or (t/cp437-tilesets (:tileset config))
-                                     (t/cp437-tilesets :wanderlust16x16)))
-          (.enableBetaFeatures b)
-          (.build b))))
+(defn- app-config
+  [{:keys
+    [size title cursor-blink blink-length
+     fullscreen debug-mode clipboard cursor-style
+     cursor-color tileset]
+    :or {size [80 24] title "Zircon Application" cursor-blink false
+         blink-length 500 fullscreen false debug-mode false clipboard false
+         cursor-style (CursorStyle/FIXED_BACKGROUND)
+         cursor-color "#FFFFFF" tileset :wanderlust16x16}}]
+  (let [[width height] size]
+    (-> (.newBuilder AppConfigBuilder/Companion)
+        (.withTitle title)
+        (.withSize width height)
+        (.withCursorBlinking cursor-blink)
+        (.withBlinkLengthInMilliSeconds blink-length)
+        (as-> b (if fullscreen
+                  (.fullScreen b)
+                  b))
+        (.withDebugMode debug-mode)
+        (.withClipboardAvailable clipboard)
+        (.withCursorStyle cursor-style)
+        (.withCursorColor (TileColor/fromString cursor-color))
+        (.withDefaultTileset (t/cp437-tilesets tileset))
+        (.enableBetaFeatures)
+        (.build))))
 
 (defn ->app [config]
   (case (:app config)
