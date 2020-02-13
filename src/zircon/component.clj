@@ -13,19 +13,24 @@
   {:button         `(Components/button)
    :panel          `(Components/panel)
    :label          `(Components/label)
+   :h-slider       `(Components/horizontalSlider)
+   :v-slider       `(Components/verticalSlider)
    :game-component `(GameComponents/newGameComponentBuilder)})
 
 (def verbs
-  {:size              '.withSize
-   :position          '.withPosition
-   :text              '.withText
-   :decorations       '.withDecorations
-   :alignment-within  '.withAlignmentWithin
-   :alignment-around  '.withAlignmentAround
-   :renderer          '.withComponentRenderer
-   :projection        '.withProjectionMode
-   :game-area         '.withGameArea
-   :tileset           '.withTileset})
+  {:size             '.withSize
+   :position         '.withPosition
+   :text             '.withText
+   :decorations      '.withDecorations
+   :alignment-within '.withAlignmentWithin
+   :alignment-around '.withAlignmentAround
+   :renderer         '.withComponentRenderer
+   :projection       '.withProjectionMode
+   :game-area        '.withGameArea
+   :tileset          '.withTileset
+   :max-value        '.withMaxValue
+   :min-value        '.withMinValue
+   :steps            '.withNumberOfSteps})
 
 (def renderers
   {:no-op `(NoOpComponentRenderer.)})
@@ -77,7 +82,40 @@
                                     ~(format-decoration-parameters params)))
     :renderer         (seq (replace renderers params))
     :projection       (seq (replace projections params))
-    (seq params)))
+    (if (coll? params)
+      (seq params)
+      `(~params))))
+
+;(defn- build-decoration
+;  [[verb param]]
+;  (conj (vals (merge (decorations-defaults verb)
+;                     param))
+;        (decorations verb)))
+
+;(defn- format-decoration-parameters
+;  [params]
+;  (map build-decoration params))
+
+;(defn- format-params
+;  [verb params]
+;  (case verb
+;    :alignment-within (seq (replace alignments params))
+;    :alignment-around (seq (replace alignments params))
+;    :decorations      `((into-array ComponentDecorationRenderer
+;                                    (map eval ~(format-decoration-parameters params))))
+;    :renderer         (seq (replace renderers params))
+;    :projection       (seq (replace projections params))
+;    (if (coll? params)
+;      (seq params)
+;      `(~params))))
+
+;(defn ->component [m]
+;  (let [type (:type m)
+;        args (dissoc m :type)]
+;    (as-> (components type) compo
+;          (map (fn [[verb params]]
+;                 ((verbs verb) compo (format-params verb params)))
+;               (seq args)))))
 
 (defmacro ->component [m]
   (let [type (:type m)
@@ -85,19 +123,22 @@
     (loop [x (components type), builders (seq args)]
       (if builders
         (let [[verb-tag params] (first builders)
-              verb (verbs verb-tag)
-              formatted-params (format-params verb-tag params)
-              threaded `(~verb ~x ~@formatted-params)]
+              threaded `(~(verbs verb-tag) ~x ~@(format-params verb-tag params))]
           (recur threaded (next builders)))
         `(.build ~x)))))
 
 (defn add-handler
   [component event handler]
-  (let [fun (i/fn->handler handler)]
+  (let [fun (i/fn->fn2 handler)]
     (case event
-      :mouse-pressed (.processMouseEvents component MouseEventType/MOUSE_PRESSED fun)
-      :mouse-released (.processMouseEvents component MouseEventType/MOUSE_RELEASED fun)
-      (.processKeyboardEvent component KeyboardEventType/KEY_PRESSED fun))))
+      :mouse-pressed (.processMouseEvents component
+                                          MouseEventType/MOUSE_PRESSED fun)
+      :mouse-released (.processMouseEvents component
+                                           MouseEventType/MOUSE_RELEASED fun)
+      :key-pressed (.processKeyboardEvent component
+                                          KeyboardEventType/KEY_PRESSED fun)
+      :key-released (.processKeyboardEvent component
+                                           KeyboardEventType/KEY_RELEASED fun))))
 
 (defn get-field [field component]
   (case field
@@ -115,5 +156,8 @@
 (defn move-by [component [x y]]
   (.moveBy component (Position/create x y)))
 
-(defn add-child [parent child]
-  (.addComponent parent child))
+(defn add-children [parent & children]
+  (loop [children children]
+    (when (seq children)
+      (.addComponent parent (first children))
+      (recur (rest children)))))

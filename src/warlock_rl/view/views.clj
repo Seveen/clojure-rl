@@ -3,7 +3,7 @@
             [zircon.component :as c]
             [zircon.colors    :as l]
             [warlock-rl.system :as s])
-  (:import (org.hexworks.zircon.api.uievent KeyCode UIEventResponse)))
+  (:import (org.hexworks.zircon.api.uievent KeyCode)))
 
 (def start-view
  (let [game-area (c/->component
@@ -20,17 +20,16 @@
                {:type        :panel
                 :size        [20 50]
                 :position    [60 0]
-                :decorations {:box {:title "Stats"}}})
-       handler (fn [event _]
-                 (z/paint-world
-                   (s/update-world
-                     (condp = (.getCode event)
-                       KeyCode/KEY_T :right
-                       KeyCode/KEY_R :left
-                       KeyCode/KEY_F :up
-                       KeyCode/KEY_S :down
-                       KeyCode/KEY_C :use-skill
-                       :none))))]
- {:root    [game-area log stats]
-  :handler handler
-  :theme   (l/color-themes :tron)}))
+                :decorations {:box {:title "Stats"}}})]
+   {:root    [game-area log stats]
+    :handler (fn [event _]
+               (z/paint-world
+                 (s/update-world
+                   (condp = (.getCode event)
+                     KeyCode/KEY_T :right
+                     KeyCode/KEY_R :left
+                     KeyCode/KEY_F :up
+                     KeyCode/KEY_S :down
+                     KeyCode/KEY_C :use-skill
+                     :none))))
+    :theme   (l/color-themes :tron)}))

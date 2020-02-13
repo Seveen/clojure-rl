@@ -16,7 +16,12 @@
       (onDock []
         (doall (map #(.addComponent (.getScreen this) %)
                     (config :root)))
+        (when (config :on-dock)
+          ((config :on-dock)))
         (.processKeyboardEvents
           (.getTileGrid app)
           KeyboardEventType/KEY_PRESSED
-          (Functions/fromBiConsumer (handler (config :handler)))))))
+          (Functions/fromBiConsumer (handler (config :handler)))))
+      (onUndock []
+        (when (config :on-undock)
+          (config :on-undock)))))

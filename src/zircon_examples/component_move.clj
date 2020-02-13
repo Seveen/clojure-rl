@@ -17,11 +17,11 @@
                     :size        [10 5]
                     :decorations {:box {}}})
       button (c/->component
-               {:type     :button
-                :text     ["Foo"]
+               {:type :button
+                :text "Foo"
                 :position [1 1]})]
-  (c/add-child innerPanel button)
-  (c/add-child panel innerPanel)
+  (c/add-children innerPanel button)
+  (c/add-children panel innerPanel)
   (z/build-ui app-config [{:root  [panel]
                            :theme (l/color-themes :adriftInDreams)}])
   (Thread/sleep 2000)

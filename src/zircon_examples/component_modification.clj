@@ -12,11 +12,11 @@
 (def view
   (let [label (c/->component
                 {:type :label
-                 :text ["Label"]
+                 :text "Label"
                  :size [10 1]})
         button (c/->component
-                 {:type             :button
-                  :text             ["Modify"]
+                 {:type :button
+                  :text "Modify"
                   :alignment-around [label :top-right]})
         handler (fn [event _]
                   (println "handler" event))]

@@ -1,10 +1,14 @@
 (ns zircon.interop
-  (:import (org.hexworks.zircon.api Functions)
-           (java.util.function BiConsumer)))
+  (:import (kotlin.jvm.functions Function1 Function2)))
 
-(defn fn->handler
+(defn fn->fn1
   [function]
-  (Functions/fromBiConsumer
-    (reify BiConsumer
-      (accept [_ t u]
-        (function t u)))))
+  (reify Function1
+    (invoke [_ p1]
+      (function p1))))
+
+(defn fn->fn2
+  [function]
+  (reify Function2
+    (invoke [_ p1 p2]
+      (function p1 p2))))
