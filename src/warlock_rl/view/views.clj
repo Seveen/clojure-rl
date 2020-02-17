@@ -2,6 +2,7 @@
   (:require [zircon.game-area :as z]
             [zircon.component :as c]
             [zircon.colors    :as l]
+            [warlock-rl.view.tiles :as t]
             [warlock-rl.system :as s])
   (:import (org.hexworks.zircon.api.uievent KeyCode)))
 
@@ -10,7 +11,7 @@
                    {:type      :game-component
                     :size      [60 40]
                     :position  [0 0]
-                    :game-area (z/area)})
+                    :game-area ((z/area [60 40]))})
        log (c/->component
              {:type        :panel
               :size        [60 10]

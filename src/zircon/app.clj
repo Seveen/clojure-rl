@@ -6,20 +6,19 @@
            (org.hexworks.zircon.api SwingApplications LibgdxApplications)))
 
 (def cursor-styles
-  {:character-foreground `CursorStyle/USE_CHARACTER_FOREGROUND
-   :fixed-background     `CursorStyle/FIXED_BACKGROUND
-   :under-bar            `CursorStyle/UNDER_BAR
-   :vertical-bar         `CursorStyle/VERTICAL_BAR})
+  {:character-foreground CursorStyle/USE_CHARACTER_FOREGROUND
+   :fixed-background     CursorStyle/FIXED_BACKGROUND
+   :under-bar            CursorStyle/UNDER_BAR
+   :vertical-bar         CursorStyle/VERTICAL_BAR})
 
 (defn- app-config
-  [{:keys
-    [size title cursor-blink blink-length
-     fullscreen debug-mode clipboard cursor-style
-     cursor-color tileset]
-    :or {size [80 24] title "Zircon Application" cursor-blink false
-         blink-length 500 fullscreen false debug-mode false clipboard false
-         cursor-style (CursorStyle/FIXED_BACKGROUND)
-         cursor-color "#FFFFFF" tileset :wanderlust16x16}}]
+  [{:keys [size title cursor-blink blink-length
+           fullscreen debug-mode clipboard cursor-style
+           cursor-color tileset]
+    :or   {size         [80 24] title "Zircon Application" cursor-blink false
+           blink-length 500 fullscreen false debug-mode false clipboard false
+           cursor-style :fixed-background
+           cursor-color "#FFFFFF" tileset :wanderlust16x16}}]
   (let [[width height] size]
     (-> (.newBuilder AppConfigBuilder/Companion)
         (.withTitle title)
@@ -31,8 +30,8 @@
                   b))
         (.withDebugMode debug-mode)
         (.withClipboardAvailable clipboard)
-        (.withCursorStyle cursor-style)
         (.withCursorColor (TileColor/fromString cursor-color))
+        (.withCursorStyle (cursor-style cursor-styles))
         (.withDefaultTileset (t/cp437-tilesets tileset))
         (.enableBetaFeatures)
         (.build))))
