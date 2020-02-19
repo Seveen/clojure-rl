@@ -2,7 +2,6 @@
   (:require [zircon.app :refer [->app]]
             [zircon.view :as v]))
 
-;build ui atom and return it
 (defn build-ui [app-config views-config]
   (let [app (->app app-config)]
     (as-> {} m
