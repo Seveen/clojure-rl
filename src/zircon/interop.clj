@@ -1,9 +1,7 @@
 (ns zircon.interop
   (:import (kotlin.jvm.functions Function1 Function2)
            (org.hexworks.zircon.api.data Size3D Size Position Position3D)
-           (kotlin Pair)
-           (kotlin.collections MapsKt)
-           (java.util LinkedHashMap)))
+           (kotlin Pair)))
 
 (defn fn->fn1
   [function]
@@ -32,6 +30,10 @@
 (defn vec->pos
   [[x y]]
   (Position/create x y))
+
+(defn pos->vec
+  [pos]
+  [(.component1 pos) (.component2 pos)])
 
 (defn vec->kotlin-pair [[k v]]
   (Pair. k v))

@@ -9,7 +9,9 @@
                  [org.hexworks.zircon/zircon.jvm.swing "2020.0.1-PREVIEW"]
                  [org.hexworks.zircon/zircon.jvm.libgdx "2020.0.1-PREVIEW"]
                  [com.rpl/specter "1.1.3"]
-                 [danlentz/clj-uuid "0.1.9"]]
+                 [danlentz/clj-uuid "0.1.9"]
+                 [vlaaad/reveal "0.1.0-ea1"]]
   :repositories [["jitpack" "https://jitpack.io"]
                  ["jcenter" "https://jcenter.bintray.com/"]]
-  :repl-options {:init-ns warlock-rl.core})
+  :repl-options {:init-ns          warlock-rl.core
+                 :nrepl-middleware [vlaaad.reveal.nrepl/middleware]})

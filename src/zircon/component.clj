@@ -1,5 +1,6 @@
 (ns zircon.component
-  (:require [zircon.interop :as i])
+  (:require [zircon.interop :as i]
+            [zircon.game-area :as z])
   (:import (org.hexworks.zircon.internal.component.renderer NoOpComponentRenderer)
            (org.hexworks.zircon.api ComponentDecorations GameComponents Components)
            (org.hexworks.zircon.api.graphics BoxType)
@@ -78,10 +79,11 @@
   (case verb
     :alignment-within (seq (replace alignments params))
     :alignment-around (seq (replace alignments params))
-    :decorations      `((into-array ComponentDecorationRenderer
-                                    ~(format-decoration-parameters params)))
-    :renderer         (seq (replace renderers params))
-    :projection       (seq (replace projections params))
+    :decorations `((into-array ComponentDecorationRenderer
+                               ~(format-decoration-parameters params)))
+    :renderer (seq (replace renderers params))
+    :projection (seq (replace projections params))
+    :game-area `(~(conj (seq params) z/area))
     (if (coll? params)
       (seq params)
       `(~params))))
@@ -131,6 +133,8 @@
   [component event handler]
   (let [fun (i/fn->fn2 handler)]
     (case event
+      :mouse-moved (.processMouseEvents component
+                                        MouseEventType/MOUSE_MOVED fun)
       :mouse-pressed (.processMouseEvents component
                                           MouseEventType/MOUSE_PRESSED fun)
       :mouse-released (.processMouseEvents component

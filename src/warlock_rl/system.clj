@@ -4,11 +4,11 @@
 
 (defn create-map []
   (reduce merge
-    (for [i (range 120)
-          j (range 80)]
-      (if (or (= i 0) (= i 119) (= j 0) (= j 79))
-        {[i j] {:glyph :wall :walkable false}}
-        {[i j] {:glyph :floor :walkable true}}))))
+          (for [i (range 120)
+                j (range 80)]
+            (if (or (= i 0) (= i 119) (= j 0) (= j 79))
+              {[i j] {:glyph :wall :walkable false}}
+              {[i j] {:glyph :floor :walkable true}}))))
 
 (def ENTITIES (path [:world :entities ALL]))
 
@@ -17,16 +17,6 @@
 
 (def MAP (path [:world :map]))
 (def VIEWPORT (path [:ui :viewport]))
-(def UISTACK (path [:ui :stack]))
-
-(defn peek-ui-state [state]
-  (peek (select-first [UISTACK] state)))
-
-(defn pop-ui-state [state]
-  (transform [UISTACK] #(pop %) state))
-
-(defn push-ui-state [state new-state]
-  (transform [UISTACK] #(conj % new-state) state))
 
 (defn get-player [state]
   (select-first [PLAYER] state))
@@ -36,14 +26,6 @@
 
 (defn get-entity-at-pos [state pos]
   (select-first [ENTITIES (pred #(= (:position %) pos))] state))
-
-(defn switch-view [state]
-  (println "Coin"))
-
-(defn update-ui [state]
-  (case (peek-ui-state state)
-    :targeting (switch-view state)
-    state))
 
 (def initial-state
   {:world {:entities [{:id       (uuid/v1)
@@ -57,9 +39,9 @@
                        :position [10 10]}]
            :map      (create-map)}
    :ui    {:commands []
-           :stack []
+           :stack    []
            :viewport {:position [0 0]
-                      :size [60 40]}}})
+                      :size     [60 40]}}})
 
 (def state (atom initial-state))
 
@@ -92,7 +74,6 @@
     :left (move state PLAYER :left)
     :up (move state PLAYER :up)
     :down (move state PLAYER :down)
-    :use-skill (update-ui (push-ui-state state :targeting))
     state))
 
 (defn process-commands [state]
