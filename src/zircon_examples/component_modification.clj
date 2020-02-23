@@ -1,8 +1,7 @@
 (ns zircon-examples.component_modification
   (:require [zircon.component :as c :refer [set-field get-field]]
             [zircon.colors :as l]
-            [zircon.core :as z])
-  (:import (org.hexworks.zircon.api.uievent KeyCode)))
+            [zircon.core :as z]))
 
 (def app-config
   {:app     :swing
@@ -23,8 +22,8 @@
     (c/add-handler button
                    :mouse-released
                    (fn [_ _]
-                     (set-field :text label
-                                (str (get-field :text label)
+                     (set-field label :text
+                                (str (get-field label :text)
                                      "x"))))
     {:root  [label button]
      :handler handler

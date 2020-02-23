@@ -15,9 +15,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-core:1.2.3" level="project" />
-    <orderEntry type="library" name="Leiningen: cljfx/css:1.1.0" level="project" />
-    <orderEntry type="library" name="Leiningen: cljfx:1.6.2" level="project" />
-    <orderEntry type="library" name="Leiningen: cljfx:1.6.2:jdk11" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.5" level="project" />
     <orderEntry type="library" name="Leiningen: com.badlogicgames.gdx/gdx-backend-lwjgl:1.9.8" level="project" />
     <orderEntry type="library" name="Leiningen: com.badlogicgames.gdx/gdx-box2d-platform:1.9.8:natives-desktop" level="project" />
@@ -70,21 +67,10 @@
     <orderEntry type="library" name="Leiningen: org.lwjgl.lwjgl/lwjgl-platform:2.9.2:natives-windows" level="project" />
     <orderEntry type="library" name="Leiningen: org.lwjgl.lwjgl/lwjgl:2.9.2" level="project" />
     <orderEntry type="library" name="Leiningen: org.lwjgl.lwjgl/lwjgl_util:2.9.2" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-base:13" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-base:13:win" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-controls:13" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-controls:13:win" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-graphics:13" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-graphics:13:win" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-media:13" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-media:13:win" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-web:13" level="project" />
-    <orderEntry type="library" name="Leiningen: org.openjfx/javafx-web:13:win" level="project" />
     <orderEntry type="library" name="Leiningen: org.ow2.asm/asm:5.2" level="project" />
     <orderEntry type="library" name="Leiningen: org.slf4j/slf4j-api:1.7.25" level="project" />
     <orderEntry type="library" name="Leiningen: org.yaml/snakeyaml:1.18" level="project" />
     <orderEntry type="library" name="Leiningen: primitive-math:0.1.6" level="project" />
     <orderEntry type="library" name="Leiningen: riddley:0.1.12" level="project" />
-    <orderEntry type="library" name="Leiningen: vlaaad/reveal:0.1.0-ea1" level="project" />
   </component>
 </module>

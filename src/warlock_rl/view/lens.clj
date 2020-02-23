@@ -8,6 +8,14 @@
                  (into {} (for [j (range y)]
                             [[i j] (t/tiles :default)])))))
 
+(defn screen->world-position [[x y] state]
+  (let [[x-off y-off] (select-first [VIEWPORT :position] state)]
+    [(+ x x-off) (+ y y-off)]))
+
+(defn world->screen-position [[x y] state]
+  (let [[x-off y-off] (select-first [VIEWPORT :position] state)]
+    [(- x x-off) (- y y-off)]))
+
 (defn- see-map [x-min x-max y-min y-max state]
   (into {} (for [[[x y] map-tile] (select [MAP ALL] state)
                  :when (and (< x x-max)
@@ -15,7 +23,7 @@
                             (< y y-max)
                             (>= y y-min))
                  :let [tile (t/tiles (:glyph map-tile))]]
-             [[(- x x-min) (- y y-min)] tile])))
+             [(world->screen-position [x y] state) tile])))
 
 (defn- see-entities [x-min x-max y-min y-max state]
   (into {} (for [entity (select [ENTITIES] state)
@@ -25,7 +33,7 @@
                             (>= x x-min)
                             (< y y-max)
                             (>= y y-min))]
-             [[(- x x-min) (- y y-min)] tile])))
+             [(world->screen-position [x y] state) tile])))
 
 (defn see-world [state]
   (let [[x-off y-off] (select-first [VIEWPORT :position] state)
@@ -35,3 +43,4 @@
     (apply merge (empty-tilemap width height)
            (see-map x-off x-max y-off y-max state)
            (see-entities x-off x-max y-off y-max state))))
+

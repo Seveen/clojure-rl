@@ -1,8 +1,13 @@
 (ns warlock-rl.core
-  (:require [warlock-rl.view.views :as v]
-            [zircon.core :as z]))
+  (:require [warlock-rl.view.start-view]
+            [warlock-rl.view.play-view]
+            [zircon.core :as z]
+            [warlock-rl.ui :as ui]))
 
-(z/build-ui {:app     :swing
-             :size    [80 50]
-             :tileset :wanderlust16x16}
-            [v/start-view])
+(ui/init-ui-state
+  (z/build-ui {:app        :swing
+               :size       [80 50]
+               :tileset    :wanderlust16x16
+               :start-with :start-view}
+              [warlock-rl.view.start-view/start-view
+               warlock-rl.view.play-view/play-view]))

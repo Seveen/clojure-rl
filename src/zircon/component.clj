@@ -6,9 +6,10 @@
            (org.hexworks.zircon.api.graphics BoxType)
            (org.hexworks.zircon.api.component.renderer ComponentDecorationRenderer)
            (org.hexworks.zircon.api.game ProjectionMode)
-           (org.hexworks.zircon.api.component ComponentAlignment)
+           (org.hexworks.zircon.api.component ComponentAlignment Component)
            (org.hexworks.zircon.api.uievent MouseEventType KeyboardEventType)
-           (org.hexworks.zircon.api.data Position)))
+           (org.hexworks.zircon.api.data Position)
+           (org.hexworks.zircon.internal.component.impl DefaultComponent DefaultPanel)))
 
 (def components
   {:button         `(Components/button)
@@ -16,6 +17,7 @@
    :label          `(Components/label)
    :h-slider       `(Components/horizontalSlider)
    :v-slider       `(Components/verticalSlider)
+   :icon           `(Components/icon)
    :game-component `(GameComponents/newGameComponentBuilder)})
 
 (def verbs
@@ -29,6 +31,7 @@
    :projection       '.withProjectionMode
    :game-area        '.withGameArea
    :tileset          '.withTileset
+   :icon             '.withIcon
    :max-value        '.withMaxValue
    :min-value        '.withMinValue
    :steps            '.withNumberOfSteps})
@@ -144,14 +147,16 @@
       :key-released (.processKeyboardEvent component
                                            KeyboardEventType/KEY_RELEASED fun))))
 
-(defn get-field [field component]
+(defn get-field [component field]
   (case field
     :text (.getText component)
+    :hidden (.isHidden component)
     ()))
 
-(defn set-field [field component value]
+(defn set-field [component field value]
   (case field
     :text (.setText component value)
+    :hidden (.setHidden component value)
     ()))
 
 (defn move-to [component [x y]]

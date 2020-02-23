@@ -1,5 +1,6 @@
 (ns warlock-rl.system
-  (:require [com.rpl.specter :refer :all]
+  (:require [com.rpl.specter :refer [path pred setval select select-first
+                                     keypath comp-paths ALL]]
             [clj-uuid :as uuid]))
 
 (defn create-map []
@@ -10,13 +11,12 @@
               {[i j] {:glyph :wall :walkable false}}
               {[i j] {:glyph :floor :walkable true}}))))
 
-(def ENTITIES (path [:world :entities ALL]))
-
+(def ENTITIES (path [:entities ALL]))
 (def DRAWABLE (path [ENTITIES (pred :glyph)]))
 (def PLAYER (path [ENTITIES (pred :player?)]))
 
-(def MAP (path [:world :map]))
-(def VIEWPORT (path [:ui :viewport]))
+(def MAP (path [:map]))
+(def VIEWPORT (path [:viewport]))
 
 (defn get-player [state]
   (select-first [PLAYER] state))
@@ -27,23 +27,18 @@
 (defn get-entity-at-pos [state pos]
   (select-first [ENTITIES (pred #(= (:position %) pos))] state))
 
-(def initial-state
-  {:world {:entities [{:id       (uuid/v1)
-                       :player?  true
-                       :glyph    :player
-                       :faction  :player
-                       :position [20 10]}
-                      {:id       (uuid/v1)
-                       :glyph    :goblin
-                       :faction  :baddies
-                       :position [10 10]}]
-           :map      (create-map)}
-   :ui    {:commands []
-           :stack    []
-           :viewport {:position [0 0]
-                      :size     [60 40]}}})
-
-(def state (atom initial-state))
+(def state (atom {:entities [{:id       (uuid/v1)
+                              :player?  true
+                              :glyph    :player
+                              :faction  :player
+                              :position [20 10]}
+                             {:id       (uuid/v1)
+                              :glyph    :goblin
+                              :faction  :baddies
+                              :position [10 10]}]
+                  :map      (create-map)
+                  :viewport {:position [0 0]
+                             :size     [60 40]}}))
 
 (defn change-position [position direction]
   (let [[x y] position]
@@ -76,20 +71,5 @@
     :down (move state PLAYER :down)
     state))
 
-(defn process-commands [state]
-  (loop [state state]
-    (let [commands (get-in state [:ui :commands])]
-      (if (seq commands)
-        (let [command (first commands)]
-          (-> state
-              (process-command command)
-              (assoc-in [:ui :commands] (rest commands))
-              (recur)))
-        state))))
-
-(defn update-state [state command]
-  (process-commands (update-in state [:ui :commands] #(conj % command))))
-
 (defn update-world [command]
-  (swap! state update-state command)
-  @state)
+  (swap! state process-command command))
