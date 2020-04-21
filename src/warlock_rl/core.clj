@@ -8,6 +8,7 @@
   (z/build-ui {:app        :swing
                :size       [80 50]
                :tileset    :wanderlust16x16
+               :close-behavior :no-close
                :start-with :start-view}
               [warlock-rl.view.start-view/start-view
                warlock-rl.view.play-view/play-view]))

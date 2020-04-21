@@ -15,6 +15,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-classic:1.2.3" level="project" />
     <orderEntry type="library" name="Leiningen: ch.qos.logback/logback-core:1.2.3" level="project" />
+    <orderEntry type="library" name="Leiningen: clj-stacktrace:0.2.8" level="project" />
     <orderEntry type="library" name="Leiningen: clojure-complete:0.2.5" level="project" />
     <orderEntry type="library" name="Leiningen: com.badlogicgames.gdx/gdx-backend-lwjgl:1.9.8" level="project" />
     <orderEntry type="library" name="Leiningen: com.badlogicgames.gdx/gdx-box2d-platform:1.9.8:natives-desktop" level="project" />
@@ -24,10 +25,15 @@
     <orderEntry type="library" name="Leiningen: com.badlogicgames.gdx/gdx-platform:1.9.8:natives-desktop" level="project" />
     <orderEntry type="library" name="Leiningen: com.badlogicgames.gdx/gdx:1.9.8" level="project" />
     <orderEntry type="library" name="Leiningen: com.badlogicgames.jlayer/jlayer:1.0.1-gdx" level="project" />
+    <orderEntry type="library" name="Leiningen: com.benasher44/uuid-jvm:0.0.7" level="project" />
     <orderEntry type="library" name="Leiningen: com.github.ben-manes.caffeine/caffeine:2.5.4" level="project" />
     <orderEntry type="library" name="Leiningen: com.jhlabs/filters:2.0.235-1" level="project" />
     <orderEntry type="library" name="Leiningen: com.rpl/specter:1.1.3" level="project" />
     <orderEntry type="library" name="Leiningen: danlentz/clj-uuid:0.1.9" level="project" />
+    <orderEntry type="library" name="Leiningen: fipp:0.6.21" level="project" />
+    <orderEntry type="library" name="Leiningen: hashp:0.1.1" level="project" />
+    <orderEntry type="library" name="Leiningen: mvxcvi/arrangement:1.2.0" level="project" />
+    <orderEntry type="library" name="Leiningen: mvxcvi/puget:1.2.0" level="project" />
     <orderEntry type="library" name="Leiningen: net.java.jinput/jinput-platform:2.0.5:natives-linux" level="project" />
     <orderEntry type="library" name="Leiningen: net.java.jinput/jinput-platform:2.0.5:natives-osx" level="project" />
     <orderEntry type="library" name="Leiningen: net.java.jinput/jinput-platform:2.0.5:natives-windows" level="project" />
@@ -38,20 +44,17 @@
     <orderEntry type="library" name="Leiningen: org.clojure/core.async:0.6.532" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.cache:0.8.2" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.memoize:0.8.2" level="project" />
+    <orderEntry type="library" name="Leiningen: org.clojure/core.rrb-vector:0.1.1" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/core.specs.alpha:0.2.44" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/data.priority-map:0.0.7" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/spec.alpha:0.2.176" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer.jvm:0.7.3" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.analyzer:0.7.0" level="project" />
     <orderEntry type="library" name="Leiningen: org.clojure/tools.reader:1.3.2" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.core-jvm:2019.2.3-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.databinding-jvm:2019.2.3-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.datatypes-jvm:2019.2.3-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.events-jvm:2019.2.3-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.logging-jvm:2019.2.3-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.core-jvm:2020.0.1-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.jvm.libgdx:2020.0.1-PREVIEW" level="project" />
-    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.jvm.swing:2020.0.1-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.cobalt/cobalt.core-jvm:2020.0.15-PREVIEW" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.core-jvm:2020.1.4-HOTFIX" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.jvm.libgdx:2020.1.4-HOTFIX" level="project" />
+    <orderEntry type="library" name="Leiningen: org.hexworks.zircon/zircon.jvm.swing:2020.1.4-HOTFIX" level="project" />
     <orderEntry type="library" name="Leiningen: org.jcraft/jorbis:0.0.17" level="project" />
     <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-reflect:1.3.61" level="project" />
     <orderEntry type="library" name="Leiningen: org.jetbrains.kotlin/kotlin-stdlib-common:1.3.61" level="project" />

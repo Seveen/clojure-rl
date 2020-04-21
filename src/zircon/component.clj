@@ -18,7 +18,8 @@
    :h-slider       `(Components/horizontalSlider)
    :v-slider       `(Components/verticalSlider)
    :icon           `(Components/icon)
-   :game-component `(GameComponents/newGameComponentBuilder)})
+   :game-component `(GameComponents/newGameComponentBuilder)
+   :log-area       `(Components/logArea)})
 
 (def verbs
   {:size             '.withSize

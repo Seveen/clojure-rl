@@ -1,6 +1,7 @@
 (ns warlock-rl.ui
-  (:require [com.rpl.specter :refer [select select-first transform setval]]
-            [warlock-rl.system :refer [update-world]]))
+  (:require [com.rpl.specter :refer [select select-first transform setval NONE]]
+            [warlock-rl.system :refer [update-world]])
+  (:import (clojure.lang PersistentQueue)))
 
 (def ui-state (atom {}))
 
@@ -11,8 +12,7 @@
             {:commands       []
              :stack          []
              :mouse-position [0 0]
-             :viewport       {:position [0 0]
-                              :size     [60 40]}})))
+             :log            PersistentQueue/EMPTY})))
 
 (defn peek-ui-state [state]
   (peek (select-first [:stack] state)))
@@ -32,12 +32,13 @@
            (setval [:mouse-position] position state))
          position))
 
+(defn purge-log []
+  (swap! ui-state
+         (fn [ui-state]
+           (setval [:log] [] ui-state))))
+
 (defn get-mouse-position []
   (select-first [:mouse-position] @ui-state))
-
-(defn switch-view [state]
-  (println "Coin")
-  state)
 
 (def ui-command
   #{:targeting
@@ -54,4 +55,8 @@
                :click state
                state))
            command)
-    (update-world command)))
+    (swap! ui-state
+           (fn [ui-state game-state]
+             (setval [:log] (:log game-state) ui-state))
+           (update-world command)))
+  (purge-log))

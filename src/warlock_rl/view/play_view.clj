@@ -17,7 +17,7 @@
                                  lens/see-world
                                  s/state]})
         log (c/->component
-              {:type        :panel
+              {:type        :log-area
                :size        [60 10]
                :position    [0 40]
                :decorations {:box {:title "Log"}}})
@@ -68,15 +68,18 @@
 
     (add-watch ui/ui-state :watch-ui-state
                (fn [key atom old-state new-state]
-                 (case (ui/peek-ui-state new-state)
-                   :targeting (do (c/set-field labelstate :text "Targeting")
-                                  (c/set-field mouse-icon :hidden false)
-                                  (c/move-to mouse-icon (ui/get-mouse-position)))
-                   (do (c/set-field labelstate :text "Nop")
-                       (c/set-field mouse-icon :hidden true)))))
+                 (do (case (ui/peek-ui-state new-state)
+                       :targeting (do (c/set-field labelstate :text "Targeting")
+                                      (c/set-field mouse-icon :hidden false)
+                                      (c/move-to mouse-icon (ui/get-mouse-position)))
+                       (do (c/set-field labelstate :text "Nop")
+                           (c/set-field mouse-icon :hidden true)))
+                     (doall (map #(.addParagraph log % false 10) (:log new-state))))))
 
     {:id      :play-view
      :root    [game-area log stats info-panel]
+     :on-dock (fn []
+                (ui/update-ui :no-op))
      :handler (fn [event _]
                 (ui/update-ui
                   (condp = (.getCode event)

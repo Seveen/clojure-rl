@@ -1,7 +1,7 @@
 (ns zircon.app
   (:require [zircon.tileset :as t])
   (:import (org.hexworks.zircon.api.builder.application AppConfigBuilder)
-           (org.hexworks.zircon.api.application CursorStyle)
+           (org.hexworks.zircon.api.application CursorStyle CloseBehavior)
            (org.hexworks.zircon.api.color TileColor)
            (org.hexworks.zircon.api SwingApplications LibgdxApplications)))
 
@@ -11,14 +11,18 @@
    :under-bar            CursorStyle/UNDER_BAR
    :vertical-bar         CursorStyle/VERTICAL_BAR})
 
+(def close-behaviors
+  {:no-close CloseBehavior/DO_NOTHING_ON_CLOSE
+   :close CloseBehavior/EXIT_ON_CLOSE})
+
 (defn- app-config
   [{:keys [size title cursor-blink blink-length
            fullscreen debug-mode clipboard cursor-style
-           cursor-color tileset]
+           cursor-color tileset close-behavior]
     :or   {size         [80 24] title "Zircon Application" cursor-blink false
            blink-length 500 fullscreen false debug-mode false clipboard false
            cursor-style :fixed-background
-           cursor-color "#FFFFFF" tileset :wanderlust16x16}}]
+           cursor-color "#FFFFFF" tileset :wanderlust16x16 close-behavior :close}}]
   (let [[width height] size]
     (-> (.newBuilder AppConfigBuilder/Companion)
         (.withTitle title)
@@ -33,6 +37,7 @@
         (.withCursorColor (TileColor/fromString cursor-color))
         (.withCursorStyle (cursor-style cursor-styles))
         (.withDefaultTileset (t/cp437-tilesets tileset))
+        (.withCloseBehavior (close-behavior close-behaviors))
         (.enableBetaFeatures)
         (.build))))
 

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Leiningen: org.hexworks.zircon/zircon.jvm.libgdx:2020.0.1-PREVIEW">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/.m2/repository/org/hexworks/zircon/zircon.jvm.libgdx/2020.0.1-PREVIEW/zircon.jvm.libgdx-2020.0.1-PREVIEW.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
